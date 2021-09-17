@@ -1,0 +1,10 @@
+﻿@using vidly.Models
+@model vidly.Models.Movie
+@{
+    ViewBag.Title = "ViewDataExample";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewDataExample</h2>
+
+<h3>@(((Movie)ViewData["Movie"]).Name)</h3>
