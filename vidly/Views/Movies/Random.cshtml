@@ -1,10 +1,10 @@
-﻿@model vidly.ViewModels.RandomMovieViewModel
+﻿@using vidly.Static_data;
 @{
-    ViewBag.Title = "Random";
+    ViewBag.Title = StaticData.AppTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{ 
+@{
     var movieNameClass = Model.Customers.Count > 5 ? "Popular" : null;
 }
 
