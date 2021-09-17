@@ -14,7 +14,7 @@ namespace vidly.Controllers
         {
             var movie = new Movie { Name = "Fast and Furious 9" };
 
-            return View(movie);
+            return View(movie); // --> movie is assigned to viewResult.ViewData.Model
             //return Content(movie.Name);
             //return HttpNotFound();
             //return new EmptyResult();
@@ -25,6 +25,13 @@ namespace vidly.Controllers
         {
             var movie = new Movie { Name = "Test view data movie" };
             ViewData["Movie"] = movie;
+            return View();
+        }
+
+        public ActionResult ViewBagExample()
+        {
+            var movie = new Movie { Name = "Testing View Bag" };
+            ViewBag.movie = movie;
             return View();
         }
 
