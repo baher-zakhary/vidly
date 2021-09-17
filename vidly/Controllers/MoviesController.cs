@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using vidly.Models;
+using vidly.Static_data;
 using vidly.ViewModels;
 
 namespace vidly.Controllers
@@ -22,10 +23,33 @@ namespace vidly.Controllers
             return View(RandomMovieViewModel);
         }
 
+        public ActionResult Details(int Id)
+        {
+            var movie = StaticData.Movies.Find(m => m.Id == Id);
+            if (movie != null)
+            {
+                return View(movie);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
+
         // GET: Movies
         public ActionResult Index()
         {
-            return View();
+            var movies = StaticData.Movies;
+            var columns = new List<string>
+            {
+                "Movie"
+            };
+            var moviesTable = new TableViewModel<Movie>
+            {
+                Columns = columns,
+                Rows = movies
+            };
+            return View(moviesTable);
         }
     }
 }

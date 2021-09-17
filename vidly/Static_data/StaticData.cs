@@ -12,8 +12,14 @@ namespace vidly.Static_data
 
         public readonly static List<Customer> Customers = new List<Customer>
         {
-            new Customer { Name = "John Smith" },
-            new Customer { Name = "Mary Williams" }
+            new Customer { Id = 1, Name = "John Smith" },
+            new Customer { Id = 2, Name = "Mary Williams" }
+        };
+
+        public readonly static List<Movie> Movies = new List<Movie>
+        {
+            new Movie { Id = 1, Name = "Shrek" },
+            new Movie { Id = 2, Name = "Wall-E"}
         };
     }
 }
