@@ -7,6 +7,8 @@ namespace vidly.Models
 {
     public class Customer : BaseModel
     {
-
+        public bool IsSubscribedToNewsLetter { get; set; }
+        public MembershipType MembershipType { get; set; }  // called navigation property
+        public byte MembershipTypeId { get; set; }  // recognized by entityframework as foreign key
     }
 }
