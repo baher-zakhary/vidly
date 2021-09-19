@@ -40,16 +40,7 @@ namespace vidly.Controllers
         public ActionResult Index()
         {
             var movies = StaticData.Movies;
-            var columns = new List<string>
-            {
-                "Movie"
-            };
-            var moviesTable = new TableViewModel<Movie>
-            {
-                Columns = columns,
-                Rows = movies
-            };
-            return View(moviesTable);
+            return View(movies);
         }
     }
 }

@@ -167,7 +167,24 @@
     <Compile Include="Migrations\202109181007055_initialModel.designer.cs">
       <DependentUpon>202109181007055_initialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109190810209_add_is_subscribed_to_news_letter_to_customer_class.cs" />
+    <Compile Include="Migrations\202109190810209_add_is_subscribed_to_news_letter_to_customer_class.designer.cs">
+      <DependentUpon>202109190810209_add_is_subscribed_to_news_letter_to_customer_class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109190840573_add_membership_type.cs" />
+    <Compile Include="Migrations\202109190840573_add_membership_type.designer.cs">
+      <DependentUpon>202109190840573_add_membership_type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109190845376_populate_membership_type.cs" />
+    <Compile Include="Migrations\202109190845376_populate_membership_type.designer.cs">
+      <DependentUpon>202109190845376_populate_membership_type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109190901448_add_annotations_to_base_model_name.cs" />
+    <Compile Include="Migrations\202109190901448_add_annotations_to_base_model_name.designer.cs">
+      <DependentUpon>202109190901448_add_annotations_to_base_model_name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -183,7 +200,6 @@
     </Compile>
     <Compile Include="Static_data\StaticData.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
-    <Compile Include="ViewModels\TableViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
@@ -251,7 +267,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -268,6 +286,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202109181007055_initialModel.resx">
       <DependentUpon>202109181007055_initialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109190810209_add_is_subscribed_to_news_letter_to_customer_class.resx">
+      <DependentUpon>202109190810209_add_is_subscribed_to_news_letter_to_customer_class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109190840573_add_membership_type.resx">
+      <DependentUpon>202109190840573_add_membership_type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109190845376_populate_membership_type.resx">
+      <DependentUpon>202109190845376_populate_membership_type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109190901448_add_annotations_to_base_model_name.resx">
+      <DependentUpon>202109190901448_add_annotations_to_base_model_name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

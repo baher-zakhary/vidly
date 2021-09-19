@@ -11,26 +11,29 @@ namespace vidly.Controllers
 {
     public class CustomersController : Controller
     {
+        private ApplicationDbContext _dbContext;
+
+        public CustomersController()
+        {
+            _dbContext = ApplicationDbContext.Create();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            _dbContext.Dispose();
+            base.Dispose(disposing);
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
-            var Columns = new List<string>
-            {
-                "Customer"
-            };
-            var customers = StaticData.Customers;
-            var customersTable = new TableViewModel<Customer>
-            {
-                Columns = Columns,
-                Rows = customers
-            };
+            var customers = _dbContext.Customers.ToList();
 
-            return View(customersTable);
+            return View(customers);
         }
 
         public ActionResult Details(int Id)
         {
-            var customer = StaticData.Customers.Find(c => c.Id == Id);
+            var customer = _dbContext.Customers.SingleOrDefault(c => c.Id == Id);
             if (customer != null)
             {
                 return View(customer);
