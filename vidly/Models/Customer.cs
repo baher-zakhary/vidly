@@ -12,7 +12,6 @@ namespace vidly.Models
         public MembershipType MembershipType { get; set; }  // called navigation property
         public byte MembershipTypeId { get; set; }  // recognized by entityframework as foreign key
         
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         public DateTime? Birthdate { get; set; }
     }
 }

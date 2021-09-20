@@ -35,7 +35,7 @@ namespace vidly.Controllers
 
         public ActionResult Details(int Id)
         {
-            var customer = _dbContext.Customers.SingleOrDefault(c => c.Id == Id);
+            var customer = _dbContext.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == Id);
             if (customer != null)
             {
                 return View(customer);
