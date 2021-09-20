@@ -195,7 +195,20 @@
     <Compile Include="Migrations\202109191325445_add_birthdate_to_customer.designer.cs">
       <DependentUpon>202109191325445_add_birthdate_to_customer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109200831180_add_genre.cs" />
+    <Compile Include="Migrations\202109200831180_add_genre.designer.cs">
+      <DependentUpon>202109200831180_add_genre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109200832139_seed_genres.cs" />
+    <Compile Include="Migrations\202109200832139_seed_genres.designer.cs">
+      <DependentUpon>202109200832139_seed_genres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109200923193_add_createdOn_and_updatedOn_to_baseModel.cs" />
+    <Compile Include="Migrations\202109200923193_add_createdOn_and_updatedOn_to_baseModel.designer.cs">
+      <DependentUpon>202109200923193_add_createdOn_and_updatedOn_to_baseModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -320,6 +333,15 @@
     <EmbeddedResource Include="Migrations\202109191325445_add_birthdate_to_customer.resx">
       <DependentUpon>202109191325445_add_birthdate_to_customer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109200831180_add_genre.resx">
+      <DependentUpon>202109200831180_add_genre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109200832139_seed_genres.resx">
+      <DependentUpon>202109200832139_seed_genres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109200923193_add_createdOn_and_updatedOn_to_baseModel.resx">
+      <DependentUpon>202109200923193_add_createdOn_and_updatedOn_to_baseModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -339,11 +361,10 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62354</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44352/</IISUrl>
+          <IISUrl>http://localhost:8880/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>http://localhost:8880/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

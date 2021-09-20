@@ -12,5 +12,7 @@ namespace vidly.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime UpdatedOn { get; set; }
     }
 }

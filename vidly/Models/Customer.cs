@@ -10,7 +10,7 @@ namespace vidly.Models
     {
         public bool IsSubscribedToNewsLetter { get; set; }
         public MembershipType MembershipType { get; set; }  // called navigation property
-        public byte MembershipTypeId { get; set; }  // recognized by entityframework as foreign key
+        public int MembershipTypeId { get; set; }  // recognized by entityframework as foreign key
         
         public DateTime? Birthdate { get; set; }
     }

@@ -1,5 +1,7 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -33,6 +35,50 @@ namespace vidly.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        public override int SaveChanges()
+        {
+            OnBeforeSaving();
+            return base.SaveChanges();
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            OnBeforeSaving();
+            return (await base.SaveChangesAsync(cancellationToken));
+        }
+
+        private void OnBeforeSaving()
+        {
+            var entries = ChangeTracker.Entries();
+            var utcNow = DateTime.UtcNow;
+
+            foreach (var entry in entries)
+            {
+                // for entities that inherit from BaseEntity,
+                // set UpdatedOn / CreatedOn appropriately
+                if (entry.Entity is BaseModel trackable)
+                {
+                    switch (entry.State)
+                    {
+                        case EntityState.Modified:
+                            // set the updated date to "now"
+                            trackable.UpdatedOn = utcNow;
+
+                            // mark property as "don't touch"
+                            // we don't want to update on a Modify operation
+                            entry.Property("CreatedOn").IsModified = false;
+                            break;
+
+                        case EntityState.Added:
+                            // set both updated and created date to "now"
+                            trackable.CreatedOn = utcNow;
+                            trackable.UpdatedOn = utcNow;
+                            break;
+                    }
+                }
+            }
         }
     }
 }
