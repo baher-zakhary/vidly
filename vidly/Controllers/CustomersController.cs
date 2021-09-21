@@ -49,11 +49,11 @@ namespace vidly.Controllers
         public ActionResult New()
         {
             var membershipTypes = _dbContext.MembershipTypes.ToList();
-            var newCustomerViewModel = new NewCustomerViewModel
+            var newCustomerViewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
-            return View(newCustomerViewModel);
+            return View("CustomerForm", newCustomerViewModel);
         }
 
         // ASP Maps view Model to view Model in method parameter
@@ -61,12 +61,59 @@ namespace vidly.Controllers
 
         // ASP is also smart enough to map Customer from inside View model to customer in method parameter
         [HttpPost]
-        public ActionResult Create(Customer newCustomer)
+        public ActionResult Save(Customer customer)
         {
-            _dbContext.Customers.Add(newCustomer);
+            if (customer.Id == 0)   // Add new customer
+            {
+                _dbContext.Customers.Add(customer);
+            }
+            else    // Edit customer
+            {
+                var customerToUpdate = _dbContext.Customers.Single(c => c.Id == customer.Id);    // Here we use Single so an exception is thrown if customer is not found
+
+                /*
+                 * One way to update our models is:
+                 * 
+                 * TryUpdateModel(customerToUpdate, "", new string[] { "Name", "Email" });
+                 * 
+                 * Which is not good as it opens up security holes in our application because it updates all properties given through request key/value dictionary
+                 * Allowing hackers to modify requests and update properties they are not allowed to
+                 * This could be fixed by providing fields to update as Magic strings new string[] { "Name", "Email" }
+                 * Which fixes this security vulnerability but introduces another issue which is if we renamed these properties names, the magic strings will not be
+                 * automatically update causing our code to break if we don't update them manually.
+                 */
+
+                // Another approach is setting the properties manually
+                customerToUpdate.Name = customer.Name;
+                customerToUpdate.Birthdate = customer.Birthdate;
+                customerToUpdate.MembershipTypeId = customer.MembershipTypeId;
+                customerToUpdate.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+
+                // Third approach is to use a Mapper with a DTO in method parameters to map DTO fields into our objectToUpdate
+                /*
+                 *  Mapper.Map(customerDTO, customerToUpdate);
+                 */
+                // and the DTO will limit the properties that will be updated avoid the security vulnerability we mentioned earlier
+            }
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
+
+            if(customer == null)
+            {
+                return HttpNotFound();
+            }
+            var newCustomerViewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _dbContext.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", newCustomerViewModel); // Override default behavior of return View(); which will go to Edit View, but with return View("CustomerForm"); goes to CustomerForm view
         }
     }
 }
