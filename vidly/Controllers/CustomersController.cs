@@ -54,7 +54,19 @@ namespace vidly.Controllers
                 MembershipTypes = membershipTypes
             };
             return View(newCustomerViewModel);
-        }        
+        }
 
+        // ASP Maps view Model to view Model in method parameter
+        // public ActionResult Create(NewCustomerViewModel newCustomerViewModel)
+
+        // ASP is also smart enough to map Customer from inside View model to customer in method parameter
+        [HttpPost]
+        public ActionResult Create(Customer newCustomer)
+        {
+            _dbContext.Customers.Add(newCustomer);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
     }
 }
