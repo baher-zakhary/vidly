@@ -1,2 +1,2 @@
 # vidly
-Vidly ASP.NET MVC application
+Vidly C# ASP.NET MVC application
