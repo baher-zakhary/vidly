@@ -14,6 +14,7 @@ namespace vidly.Models
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { get; set; }
         [Display(Name = "Number in stock")]
+        [Range(1, 20)]
         public int NumberInStock { get; set; }
     }
 }
