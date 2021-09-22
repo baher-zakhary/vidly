@@ -6,6 +6,15 @@ using System.Web;
 
 namespace vidly.Models.CustomValidations
 {
+    /*
+     * Client side validations and custom validators:
+     * ----------------------------------------------
+     * Custom validators don't work with client side validation
+     * client side validation only works with standard .NET annotations
+     * It is a good thing to do client side validation only for standard annotations
+     * and let custom validations aka business logic be done on the server
+     * so when the business changes it only needs to be changed on the server
+     */
     public class Min18YearsIfAMember : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
