@@ -5,7 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MovieForm</h2>
+@if (Model.Movie.Id == 0)
+{
+    <h2>Add Movie</h2>
+}
+else
+{
+    <h2>Edit Movie</h2>
+}
 
 @using (Html.BeginForm("Save", "Movies"))
 {
@@ -28,4 +35,7 @@
         @Html.LabelFor(m => m.Movie.NumberInStock)
         @Html.TextBoxFor(m => m.Movie.NumberInStock, new { @class = "form-control" })
     </div>
+
+    @Html.HiddenFor(m => m.Movie.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
 }
