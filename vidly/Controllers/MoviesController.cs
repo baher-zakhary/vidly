@@ -60,7 +60,6 @@ namespace vidly.Controllers
         {
             var movieFormViewModel = new MovieFormViewModel
             {
-                Movie = new Movie(),
                 Genres = _dbContext.Genres.ToList()
             };
             return View("MovieForm", movieFormViewModel);
