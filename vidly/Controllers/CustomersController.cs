@@ -62,6 +62,7 @@ namespace vidly.Controllers
 
         // ASP is also smart enough to map Customer from inside View model to customer in method parameter
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             if (!ModelState.IsValid)
