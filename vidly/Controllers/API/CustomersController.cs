@@ -8,6 +8,19 @@ using vidly.Models;
 
 namespace vidly.Controllers.API
 {
+    /*
+     * Benefits of using DTOs (Data transfer objects):
+     * -----------------------------------------------
+     * 1- Application domain models which are considered implementation details
+     * 2- Domain models should not be used with APIs
+     * 3- Our domain models can change frequently as we implement new features through (renaming, removing) properties
+     *    in our application, thus breaking existing clients that depend on our APIs
+     * 4- So DTOs make the contract of our API as stable as possible
+     * 5- Since DTOs are public contracts they should be changed carefully and at slower pace than domain models
+     * 6- Therefore DTOs should not depend on domain models, only on primitive types and other DTOs
+     * 7- Can be used safely with Auto mapper without exposing sensitive properties to attacks
+     * 8- APIs should never receive or return domain objects
+     */
     public class CustomersController : ApiController
     {
         private ApplicationDbContext _dbContext { get; set; }
