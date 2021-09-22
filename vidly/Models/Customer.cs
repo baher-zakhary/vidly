@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using vidly.Models.CustomValidations;
 
 namespace vidly.Models
 {
@@ -16,6 +17,7 @@ namespace vidly.Models
         public int MembershipTypeId { get; set; }  // recognized by entityframework as foreign key
         
         [Display(Name = "Date of Birth")]
+        [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
     }
 }
