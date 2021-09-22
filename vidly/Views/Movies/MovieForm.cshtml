@@ -1,12 +1,13 @@
-﻿@model vidly.ViewModels.MovieFormViewModel
+﻿@using vidly.Static_data;
+@model vidly.ViewModels.MovieFormViewModel
 @{
-    ViewBag.Title = "MovieForm";
+    ViewBag.Title = StaticData.AppTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>MovieForm</h2>
 
-@using(Html.BeginForm("Save", "Movies"))
+@using (Html.BeginForm("Save", "Movies"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.Name)
