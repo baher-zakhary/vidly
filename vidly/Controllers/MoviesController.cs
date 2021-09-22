@@ -31,12 +31,17 @@ namespace vidly.Controllers
             return View(RandomMovieViewModel);
         }
 
-        public ActionResult Details(int Id)
+        public ActionResult Edit(int Id)
         {
             var movie = _dbContext.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == Id);
             if (movie != null)
             {
-                return View(movie);
+                var movieFormViewModel = new MovieFormViewModel
+                {
+                    Movie = movie,
+                    Genres = _dbContext.Genres.ToList()
+                };
+                return View("MovieForm", movieFormViewModel);
             }
             else
             {
@@ -49,6 +54,16 @@ namespace vidly.Controllers
         {
             var movies = _dbContext.Movies.Include(m => m.Genre).ToList();
             return View(movies);
+        }
+
+        public ActionResult New()
+        {
+            var movieFormViewModel = new MovieFormViewModel
+            {
+                Movie = new Movie(),
+                Genres = _dbContext.Genres.ToList()
+            };
+            return View("MovieForm", movieFormViewModel);
         }
     }
 }
