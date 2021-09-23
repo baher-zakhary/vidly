@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -9,6 +11,11 @@ namespace vidly
     {
         public static void Register(HttpConfiguration config)
         {
+            var jsonSerializerSettings = config.Formatters.JsonFormatter.SerializerSettings;
+
+            jsonSerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            jsonSerializerSettings.Formatting = Formatting.Indented;
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
