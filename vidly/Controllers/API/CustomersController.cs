@@ -33,29 +33,34 @@ namespace vidly.Controllers.API
         }
 
         // GET /api/customers
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _dbContext.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            return Ok(_dbContext.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>));
         }
 
         // GET /api/customers/{id}
-        public CustomerDto GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
             if (customer == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
-            return Mapper.Map<Customer, CustomerDto>(customer);
+            return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
         // POST /api/customers
         [HttpPost] // annotation should be used becase action name is not PostCustomer
-        public CustomerDto CreateCustomer(CustomerDto customerDto)
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid == true)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                /*
+                 * Instead of throwing an exception we return Http response with proper error code
+                 * throw new HttpResponseException(HttpStatusCode.BadRequest);
+                 */
+                return BadRequest();
             }
             var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
             _dbContext.Customers.Add(customer);
@@ -63,40 +68,44 @@ namespace vidly.Controllers.API
 
             customerDto.Id = customer.Id;
 
-            return customerDto;
+            return Created(new Uri($"{Request.RequestUri}/{customer.Id}"), customerDto);
         }
 
         // PUT /api/customers/1
         [HttpPut]
-        public CustomerDto UpdateCustomer(int id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                //throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             var customerInDb = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
 
             Mapper.Map(customerDto, customerInDb);  // We pass customerInDb to mapper to update it
 
             _dbContext.SaveChanges();
-            return customerDto;
+            return Ok(customerDto);
         }
 
         // DELETE /api/customers/1
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDb == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                //throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
             _dbContext.Customers.Remove(customerInDb);
             _dbContext.SaveChanges();
+            return Ok();
         }
     }
 }
