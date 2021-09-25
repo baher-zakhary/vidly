@@ -10,11 +10,11 @@ using vidly.Models;
 
 namespace vidly.Controllers.API
 {
-    public class MovieController : ApiController
+    public class MoviesController : ApiController
     {
         private ApplicationDbContext _dbContext;
 
-        public MovieController()
+        public MoviesController()
         {
             _dbContext = ApplicationDbContext.Create();
         }
@@ -25,7 +25,7 @@ namespace vidly.Controllers.API
             return Ok(_dbContext.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>));
         }
 
-        // GET /api/Movie/{id}
+        // GET /api/Movies/{id}
         [HttpGet]
         public IHttpActionResult GetMovie(int id)
         {
@@ -37,7 +37,7 @@ namespace vidly.Controllers.API
             return Ok(Mapper.Map<Movie, MovieDto>(movie));
         }
 
-        // POST /api/Movie
+        // POST /api/Movies
         [HttpPost]
         public IHttpActionResult CreateMovie(MovieDto movieDto)
         {
@@ -55,7 +55,7 @@ namespace vidly.Controllers.API
             return Created(new Uri($"{Request.RequestUri}/{newMovie.Id}"), movieDto);
         }
 
-        // PUT /api/Movie/{id}
+        // PUT /api/Movies/{id}
         [HttpPut]
         public IHttpActionResult UpdateMovie(int id, MovieDto movieDto)
         {
@@ -79,7 +79,7 @@ namespace vidly.Controllers.API
             return Ok(movieDto);
         }
 
-        // DELETE /api/Movie/{id}
+        // DELETE /api/Movies/{id}
         [HttpDelete]
         public IHttpActionResult DeleteMovie(int id)
         {
