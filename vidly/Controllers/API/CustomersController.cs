@@ -63,11 +63,11 @@ namespace vidly.Controllers.API
                 return BadRequest();
             }
 
-            var customer = Mapper.Map<CustomerDto, Customer>(customerDto);
-            _dbContext.Customers.Add(customer);
+            var newCustomer = Mapper.Map<CustomerDto, Customer>(customerDto);
+            _dbContext.Customers.Add(newCustomer);
             _dbContext.SaveChanges();
 
-            return Created(new Uri($"{Request.RequestUri}/{customer.Id}"), customerDto);
+            return Created(new Uri($"{Request.RequestUri}/{newCustomer.Id}"), newCustomer);
         }
 
         // PUT /api/customers/1
@@ -86,7 +86,7 @@ namespace vidly.Controllers.API
                 return NotFound();
             }
 
-            customerInDb.DisableAutoMappingId();
+            customerDto.DisableAutoMappingId();
 
             Mapper.Map(customerDto, customerInDb);  // We pass customerInDb to mapper to update it
             _dbContext.SaveChanges();

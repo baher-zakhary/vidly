@@ -50,7 +50,7 @@ namespace vidly.Controllers.API
             _dbContext.Movies.Add(newMovie);
             _dbContext.SaveChanges();
 
-            return Created(new Uri($"{Request.RequestUri}/{newMovie.Id}"), movieDto);
+            return Created(new Uri($"{Request.RequestUri}/{newMovie.Id}"), newMovie);
         }
 
         // PUT /api/Movies/{id}
@@ -62,14 +62,14 @@ namespace vidly.Controllers.API
                 return BadRequest();
             }
 
-            var movieInDb = _dbContext.Movies.SingleOrDefault(m => m.Id == movieDto.Id);
+            var movieInDb = _dbContext.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)
             {
                 return NotFound();
             }
 
-            movieInDb.DisableAutoMappingId();
+            movieDto.DisableAutoMappingId();
 
             Mapper.Map(movieDto, movieInDb);
             _dbContext.SaveChanges();
