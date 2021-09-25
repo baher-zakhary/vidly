@@ -50,8 +50,6 @@ namespace vidly.Controllers.API
             _dbContext.Movies.Add(newMovie);
             _dbContext.SaveChanges();
 
-            movieDto.Id = newMovie.Id;
-
             return Created(new Uri($"{Request.RequestUri}/{newMovie.Id}"), movieDto);
         }
 
@@ -71,10 +69,12 @@ namespace vidly.Controllers.API
                 return NotFound();
             }
 
-            Mapper.Map(movieDto, movieInDb);
-            movieDto.Id = movieInDb.Id;
+            movieInDb.DisableAutoMappingId();
 
+            Mapper.Map(movieDto, movieInDb);
             _dbContext.SaveChanges();
+
+            movieDto.Id = movieInDb.Id;
 
             return Ok(movieDto);
         }

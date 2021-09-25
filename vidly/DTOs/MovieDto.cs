@@ -6,13 +6,8 @@ using System.Web;
 
 namespace vidly.DTOs
 {
-    public class MovieDto
+    public class MovieDto : BaseModelDto
     {
-        public int Id { get; set; }
-
-        [Required]
-        [StringLength(255)]
-        public string Name { get; set; }
 
         public int GenreId { get; set; }
 
@@ -20,5 +15,6 @@ namespace vidly.DTOs
 
         [Range(1, 20)]
         public int NumberInStock { get; set; }
+
     }
 }
