@@ -18,12 +18,13 @@
 }
 else
 {
-    <table class="table table-striped table-hover table-bordered">
+    <table id="customers" class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
                 <th>Customer</th>
                 @*<th>Discount Rate</th>*@
                 <th>Membership Name</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -33,9 +34,38 @@ else
                     <td>@Html.ActionLink(((Customer)customer).Name, "Edit", "Customers", new { Id = customer.Id }, null)</td>
                     @*<td>@customer.MembershipType.DiscountRate %</td>*@
                     <td>@customer.MembershipType.Name</td>
+                    <td>
+                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#customers .js-delete").on("click", function () {
+                let confirmed = confirm("Are you sure you want to delete this customer ?");
+                if (confirmed) {
+                    deleteThisCustomer(this);
+                }
+            })
+        });
+
+        function deleteThisCustomer(self) {
+            $.ajax({
+                url: "/api/customers/" + $(self).attr("data-customer-id"),
+                method: "DELETE",
+                success: removeParentsTr(self)
+            })
+        }
+
+        function removeParentsTr(self) {
+            $(self).parents("tr").remove();
+        }
+    </script>
 }
 
