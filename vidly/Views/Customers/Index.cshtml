@@ -45,13 +45,15 @@ else
 
 @section scripts
 {
-    <script>
+    <script> 
         $(document).ready(function () {
             $("#customers .js-delete").on("click", function () {
-                let confirmed = confirm("Are you sure you want to delete this customer ?");
-                if (confirmed) {
-                    deleteThisCustomer(this);
-                }
+                let self = this;
+                bootbox.confirm("Are you sure you want to delete this customer ?", function (result) {
+                    if (result) {
+                        deleteThisCustomer(self);
+                    }
+                });
             })
         });
 
