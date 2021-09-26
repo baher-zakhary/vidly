@@ -28,9 +28,9 @@ namespace vidly.Controllers
         public ActionResult Index()
         {
             //var customers = _dbContext.Customers.ToList();    // Lazy loading
-            var customers = _dbContext.Customers.Include(c => c.MembershipType).ToList();   // use Include for eager loading, import include from System.Data.Entity
+            //var customers = _dbContext.Customers.Include(c => c.MembershipType).ToList();   // use Include for eager loading, import include from System.Data.Entity
 
-            return View(customers);
+            return View(/*customers*/);
         }
 
         public ActionResult Details(int Id)
