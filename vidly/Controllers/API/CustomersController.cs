@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -35,7 +36,11 @@ namespace vidly.Controllers.API
         // GET /api/customers
         public IHttpActionResult GetCustomers()
         {
-            return Ok(_dbContext.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>));
+            var customerDtos = _dbContext.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+            return Ok(customerDtos);
         }
 
         // GET /api/customers/{id}

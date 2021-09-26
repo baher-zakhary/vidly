@@ -31,6 +31,8 @@ namespace vidly.App_Start
             Mapper.CreateMap<CustomerDto, Customer>()
                 .ForMember(dest => dest.Id, opt => opt.Condition(source => source.isIdAutoMappingDisabled() == false));
 
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
+
 
             Mapper.CreateMap<Movie, MovieDto>()
                 .ForMember(dest => dest.Id, opt => opt.Condition(source => source.isIdAutoMappingDisabled() == false));
