@@ -10,6 +10,8 @@ using vidly.ViewModels;
 
 namespace vidly.Controllers
 {
+    // Apply authorization on all controller actions
+    //[Authorize]
     public class CustomersController : Controller
     {
         private ApplicationDbContext _dbContext;
@@ -24,6 +26,8 @@ namespace vidly.Controllers
             base.Dispose(disposing);
         }
 
+        // Apply authorization on an action
+        //[Authorize]
         // GET: Customers
         public ActionResult Index()
         {
