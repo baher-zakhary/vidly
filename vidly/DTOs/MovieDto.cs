@@ -8,7 +8,7 @@ namespace vidly.DTOs
 {
     public class MovieDto : BaseModelDto
     {
-
+        public GenreDto Genre { get; set; }
         public int GenreId { get; set; }
 
         public DateTime ReleaseDate { get; set; }

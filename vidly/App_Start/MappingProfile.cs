@@ -33,6 +33,7 @@ namespace vidly.App_Start
 
             Mapper.CreateMap<MembershipType, MembershipTypeDto>();
 
+            Mapper.CreateMap<Genre, GenreDto>();
 
             Mapper.CreateMap<Movie, MovieDto>()
                 .ForMember(dest => dest.Id, opt => opt.Condition(source => source.isIdAutoMappingDisabled() == false));
