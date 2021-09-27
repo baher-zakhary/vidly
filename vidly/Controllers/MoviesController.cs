@@ -52,8 +52,17 @@ namespace vidly.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movies = _dbContext.Movies.Include(m => m.Genre).ToList();
-            return View(movies);
+            // User property of our controller gives us access to the logged in user
+            if (User.IsInRole("CanManageMovies"))
+            {
+                return View("List");
+            }
+            else
+            {
+                return View("ReadOnlyList");
+            }
+            //var movies = _dbContext.Movies.Include(m => m.Genre).ToList();
+            //return View(movies);
         }
 
         public ActionResult New()

@@ -1,0 +1,56 @@
+﻿@using vidly.Static_data;
+@using vidly.Models;
+@{
+    ViewBag.Title = StaticData.AppTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+@*@if (Model == null)
+{
+    <p>We don't have any movies yet.</p>
+}
+else
+{*@
+    <table id="moviesTable" class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Movie</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*@foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(((Movie)movie).Name, "Edit", "Movies", new { Id = movie.Id }, null)</td>
+                    <td>@movie.Genre.Name</td>
+                </tr>
+            }*@
+        </tbody>
+    </table>
+@*}*@
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            let moviesTable = $("#moviesTable").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "genre.name"
+                    }
+                ]
+            });
+
+    </script>
+}
+
