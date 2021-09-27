@@ -228,6 +228,10 @@
     <Compile Include="Migrations\202109200923193_add_createdOn_and_updatedOn_to_baseModel.designer.cs">
       <DependentUpon>202109200923193_add_createdOn_and_updatedOn_to_baseModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109271937577_seed_users.cs" />
+    <Compile Include="Migrations\202109271937577_seed_users.designer.cs">
+      <DependentUpon>202109271937577_seed_users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidations\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -542,6 +546,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109200923193_add_createdOn_and_updatedOn_to_baseModel.resx">
       <DependentUpon>202109200923193_add_createdOn_and_updatedOn_to_baseModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109271937577_seed_users.resx">
+      <DependentUpon>202109271937577_seed_users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
