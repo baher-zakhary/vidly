@@ -31,7 +31,7 @@
             @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsLetter) Subscribed to Newsletter ?
         </label>
     </div>
-    @Html.Hidden("Model.Customer.Id", (Model.Customer != null) ? Model.Customer.Id : 0)
+    @Html.Hidden("Customer.Id", (Model.Customer != null) ? Model.Customer.Id : 0)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
