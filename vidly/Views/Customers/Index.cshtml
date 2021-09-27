@@ -18,7 +18,7 @@
 }
 else
 {*@
-    <table id="customers" class="table table-striped table-hover table-bordered">
+    <table id="customersTable" class="table table-striped table-hover table-bordered">
         <thead>
             <tr>
                 <th>Customer</th>
@@ -28,17 +28,17 @@ else
             </tr>
         </thead>
         <tbody>
-            @*@foreach (var customer in Model)*@
-            @*{*@
-                @*<tr>*@
-                    @*<td>@Html.ActionLink(((Customer)customer).Name, "Edit", "Customers", new { Id = customer.Id }, null)</td>*@
-                    @*<td>@customer.MembershipType.DiscountRate %</td>*@
-                    @*<td>@customer.MembershipType.Name</td>*@
-                    @*<td>*@
-                        @*<button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>*@
-                    @*</td>*@
-                @*</tr>*@
-            @*}*@
+            @*@foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(((Customer)customer).Name, "Edit", "Customers", new { Id = customer.Id }, null)</td>
+                    <td>@customer.MembershipType.DiscountRate %</td>
+                    <td>@customer.MembershipType.Name</td>
+                    <td>
+                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+                    </td>
+                </tr>
+            }*@
         </tbody>
     </table>
 @*}*@
@@ -47,7 +47,7 @@ else
 {
     <script> 
         $(document).ready(function () {
-            let customersTable = $("#customers").DataTable({
+            let customersTable = $("#customersTable").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: ""
@@ -65,28 +65,29 @@ else
                     {
                         data: "id",
                         render: function (data) {
-                            return "<button class='btn-link js-delete' data-customer-id=" + data + "> Delete </button>"
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + "> Delete </button>";
                         }
                     }
                 ]
             });
 
-            $("#customers").on("click", ".js-delete", function () {
+            $("#customersTable").on("click", ".js-delete", function () {
                 let deleteBtn = $(this);
                 bootbox.confirm("Are you sure you want to delete this customer ?", function (result) {
                     if (result) {
-                        deleteThisCustomer(customersTable, deleteBtn);
+                        let customerId = deleteBtn.attr("data-customer-id");
+                        deleteCustomer(customersTable, deleteBtn, customerId);
                     }
                 });
-            })
+            });
         });
 
-        function deleteThisCustomer(customersTable, deleteBtn) {
+        function deleteCustomer(customersTable, deleteBtn, customerId) {
             $.ajax({
-                url: "/api/customers/" + deleteBtn.attr("data-customer-id"),
+                url: "/api/customers/" + customerId,
                 method: "DELETE",
                 success: removeDatatableRowData(customersTable, deleteBtn)
-            })
+            });     
         }
 
         function removeDatatableRowData(customersTable, deleteBtn) {
