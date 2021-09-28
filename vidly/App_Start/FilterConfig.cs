@@ -11,6 +11,9 @@ namespace vidly
 
             // Apply authorization on everything in our application
             filters.Add(new AuthorizeAttribute());
+
+            // Require HTTPS to use our App - block non secure access to our App
+            filters.Add(new RequireHttpsAttribute());
         }
     }
 }
