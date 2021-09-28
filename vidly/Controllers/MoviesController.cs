@@ -53,7 +53,7 @@ namespace vidly.Controllers
         public ActionResult Index()
         {
             // User property of our controller gives us access to the logged in user
-            if (User.IsInRole("CanManageMovies"))
+            if (User.IsInRole(RoleName.CanManageMovies))
             {
                 return View("List");
             }
@@ -65,7 +65,7 @@ namespace vidly.Controllers
             //return View(movies);
         }
 
-        [Authorize(Roles = "CanManageMovies")]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var movieFormViewModel = new MovieFormViewModel
