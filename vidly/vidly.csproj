@@ -232,6 +232,10 @@
     <Compile Include="Migrations\202109271937577_seed_users.designer.cs">
       <DependentUpon>202109271937577_seed_users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109280820460_add_driving_license.cs" />
+    <Compile Include="Migrations\202109280820460_add_driving_license.designer.cs">
+      <DependentUpon>202109280820460_add_driving_license.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidations\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -551,6 +555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109271937577_seed_users.resx">
       <DependentUpon>202109271937577_seed_users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109280820460_add_driving_license.resx">
+      <DependentUpon>202109280820460_add_driving_license.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
