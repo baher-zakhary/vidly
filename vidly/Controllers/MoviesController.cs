@@ -10,6 +10,7 @@ using vidly.ViewModels;
 
 namespace vidly.Controllers
 {
+    [Authorize(Roles = RoleName.CanManageMovies)]
     public class MoviesController : Controller
     {      
         
@@ -19,6 +20,8 @@ namespace vidly.Controllers
         {
             _dbContext = ApplicationDbContext.Create();
         }
+
+        [AllowAnonymous]
         public ActionResult Random()
         {
             var RandomMovieViewModel = new RandomMovieViewModel();
@@ -50,6 +53,7 @@ namespace vidly.Controllers
         }
 
         // GET: Movies
+        [AllowAnonymous]
         public ActionResult Index()
         {
             // User property of our controller gives us access to the logged in user
@@ -65,7 +69,6 @@ namespace vidly.Controllers
             //return View(movies);
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var movieFormViewModel = new MovieFormViewModel

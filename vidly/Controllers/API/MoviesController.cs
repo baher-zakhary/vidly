@@ -11,6 +11,7 @@ using vidly.Models;
 
 namespace vidly.Controllers.API
 {
+    [Authorize(Roles = RoleName.CanManageMovies)]
     public class MoviesController : ApiController
     {
         private ApplicationDbContext _dbContext;
@@ -21,6 +22,7 @@ namespace vidly.Controllers.API
         }
 
         // GET /api/Movies
+        [AllowAnonymous]
         public IHttpActionResult GetMovies()
         {
             var movieDtos = _dbContext.Movies
@@ -32,6 +34,7 @@ namespace vidly.Controllers.API
 
         // GET /api/Movies/{id}
         [HttpGet]
+        [AllowAnonymous]
         public IHttpActionResult GetMovie(int id)
         {
             var movie = _dbContext.Movies.SingleOrDefault(m => m.Id == id);
