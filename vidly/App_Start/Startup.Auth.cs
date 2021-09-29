@@ -54,11 +54,11 @@ namespace vidly
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            var facebookAppId = ConfigurationManager.AppSettings["facebook_app_id"];
-            var facebookAppSecret = ConfigurationManager.AppSettings["facebook_app_secret"];
+            var facebookAppId = ConfigurationManager.AppSettings["Authentication:FacebookAppId"];
+            var facebookAppSecret = ConfigurationManager.AppSettings["Authentication:FacebookAppSecret"];
             app.UseFacebookAuthentication(
-               appId: "facebookAppId",
-               appSecret: "facebookAppSecret");
+               appId: facebookAppId,
+               appSecret: facebookAppSecret);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
