@@ -9,6 +9,7 @@ using System.Web.Http;
 using vidly.DTOs;
 using vidly.Models;
 
+// Use API controller if you want to return JSON data
 namespace vidly.Controllers.API
 {
     /*

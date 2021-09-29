@@ -8,6 +8,7 @@ using vidly.Models;
 using vidly.Static_data;
 using vidly.ViewModels;
 
+// Use MVC controller if you want to return Markup (HTML files)
 namespace vidly.Controllers
 {
     // Apply authorization on all controller actions
