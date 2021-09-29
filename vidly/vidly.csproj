@@ -242,6 +242,10 @@
     <Compile Include="Migrations\202109280820460_add_driving_license.designer.cs">
       <DependentUpon>202109280820460_add_driving_license.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109290952161_add_phone_to_Register_and_external_login.cs" />
+    <Compile Include="Migrations\202109290952161_add_phone_to_Register_and_external_login.designer.cs">
+      <DependentUpon>202109290952161_add_phone_to_Register_and_external_login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidations\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -514,7 +518,6 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Views\Movies\MovieForm.cshtml" />
     <Content Include="Views\Movies\ReadOnlyList.cshtml" />
-    <None Include="Static_data\secrets.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -565,6 +568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109280820460_add_driving_license.resx">
       <DependentUpon>202109280820460_add_driving_license.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109290952161_add_phone_to_Register_and_external_login.resx">
+      <DependentUpon>202109290952161_add_phone_to_Register_and_external_login.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
