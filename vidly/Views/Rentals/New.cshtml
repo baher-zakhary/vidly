@@ -36,8 +36,9 @@
 
             let moviesSource = setupBloodHound('/api/movies?query=%QUERY', '%QUERY', 'name');
 
-            setupTypeAhead('#movie', 'movies', 'name', moviesSource, function (event, customer) {
-                customerViewModel.movieId = movie.id;
+            setupTypeAhead('#movie', 'movies', 'name', moviesSource, function (event, movie) {
+                movieViewModel.movieId = movie.id;
+
             });
 
             function setupBloodHound(url, wildCard, datumTokenizer) {
