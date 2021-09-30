@@ -14,7 +14,7 @@
 
     <div class="form-group">
         <label>Movie</label>
-        <input type="text" value="" class="form-control" />
+        <input id="movie" type="text" value="" class="form-control" />
     </div>
 
     <button class="btn btn-primary">Submit</button>
@@ -25,11 +25,19 @@
     <script>
         $(document).ready(function () {
 
-            let viewModel = {};
+            let customerViewModel = {};
+            let movieViewModel = {};
+
             let customersSource = setupBloodHound('/api/customers?query=%QUERY', '%QUERY', 'name');
 
             setupTypeAhead('#customer', 'customers', 'name', customersSource, function (event, customer) {
-                viewModel.customerId = customer.id;
+                customerViewModel.customerId = customer.id;
+            });
+
+            let moviesSource = setupBloodHound('/api/movies?query=%QUERY', '%QUERY', 'name');
+
+            setupTypeAhead('#movie', 'movies', 'name', moviesSource, function (event, customer) {
+                customerViewModel.movieId = movie.id;
             });
 
             function setupBloodHound(url, wildCard, datumTokenizer) {

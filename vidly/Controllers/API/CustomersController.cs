@@ -51,7 +51,7 @@ namespace vidly.Controllers.API
             {
                 var customerDtos = _dbContext.Customers
                     .Where(c => c.Name.StartsWith(query))
-                    .Include(c => c.MembershipType)
+                    //.Include(c => c.MembershipType)
                     .ToList()
                     .Select(Mapper.Map<Customer, CustomerDto>);
                 return Ok(customerDtos);

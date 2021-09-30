@@ -32,6 +32,23 @@ namespace vidly.Controllers.API
             return Ok(movieDtos);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IHttpActionResult GetMovies(string query)
+        {
+            if (query != null)
+            {
+                var movies = _dbContext.Movies
+                    .Where(m => m.Name.StartsWith(query))
+                    //.Include(m => m.Genre)
+                    .ToList()
+                    .Select(Mapper.Map<Movie, MovieDto>);
+
+                return Ok(movies);
+            }
+            return Ok();
+        }
+
         // GET /api/Movies/{id}
         [HttpGet]
         [AllowAnonymous]
