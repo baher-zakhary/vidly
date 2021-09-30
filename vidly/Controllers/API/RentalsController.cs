@@ -10,6 +10,7 @@ using vidly.Models;
 
 namespace vidly.Controllers.API
 {
+    [RoutePrefix("api/rentals")]
     public class RentalsController : ApiController
     {
         public ApplicationDbContext _dbContext { get; set; }
@@ -40,6 +41,7 @@ namespace vidly.Controllers.API
          * Results in more complicated/polluted code with extra validations
          */
         [HttpPost]
+        [Route("CreateRentalDefensiveApproach")]
         public IHttpActionResult CreateRentalDefensiveApproach(RentalDto rentalDto)
         {
             if (rentalDto.MovieIds == null || rentalDto.MovieIds.Count == 0)
@@ -91,6 +93,7 @@ namespace vidly.Controllers.API
          * No need for extra validation code
          */
         [HttpPost]
+        [Route("CreateRentalOptimisticApproach")]
         public IHttpActionResult CreateRentalOptimisticApproach(RentalDto rentalDto)
         {
 
