@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using vidly.DTOs;
 using vidly.Models;
+using System.Web;
 
 // Use API controller if you want to return JSON data
 namespace vidly.Controllers.API
@@ -42,6 +43,20 @@ namespace vidly.Controllers.API
                 .ToList()
                 .Select(Mapper.Map<Customer, CustomerDto>);
             return Ok(customerDtos);
+        }
+
+        public IHttpActionResult GetCustomers(string query)
+        {
+            if (query != null)
+            {
+                var customerDtos = _dbContext.Customers
+                    .Where(c => c.Name.StartsWith(query))
+                    .Include(c => c.MembershipType)
+                    .ToList()
+                    .Select(Mapper.Map<Customer, CustomerDto>);
+                return Ok(customerDtos);
+            }
+            return Ok();
         }
 
         // GET /api/customers/{id}
