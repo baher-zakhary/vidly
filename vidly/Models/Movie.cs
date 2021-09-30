@@ -15,6 +15,9 @@ namespace vidly.Models
         public DateTime ReleaseDate { get; set; }
         [Display(Name = "Number in stock")]
         [Range(1, 20)]
-        public int NumberInStock { get; set; }
+        public byte NumberInStock { get; set; }
+
+        // Keep track of available for renting movies for better performance and simpler queries
+        public byte NumberAvailable { get; set; }
     }
 }

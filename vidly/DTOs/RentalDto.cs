@@ -12,5 +12,9 @@ namespace vidly.DTOs
         public List<int> MovieIds { get; set; }
 
         public int CustomerId { get; set; }
+
+        //public DateTime DateRented { get; set; }
+
+        //public DateTime? DateReturned { get; set; }
     }
 }

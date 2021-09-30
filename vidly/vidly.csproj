@@ -264,6 +264,14 @@
     <Compile Include="Migrations\202109290952161_add_phone_to_Register_and_external_login.designer.cs">
       <DependentUpon>202109290952161_add_phone_to_Register_and_external_login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109292318455_add-rentals.cs" />
+    <Compile Include="Migrations\202109292318455_add-rentals.designer.cs">
+      <DependentUpon>202109292318455_add-rentals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109292347475_track_number_of_available_movies_for_rent.cs" />
+    <Compile Include="Migrations\202109292347475_track_number_of_available_movies_for_rent.designer.cs">
+      <DependentUpon>202109292347475_track_number_of_available_movies_for_rent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomValidations\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -590,6 +598,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109290952161_add_phone_to_Register_and_external_login.resx">
       <DependentUpon>202109290952161_add_phone_to_Register_and_external_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109292318455_add-rentals.resx">
+      <DependentUpon>202109292318455_add-rentals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109292347475_track_number_of_available_movies_for_rent.resx">
+      <DependentUpon>202109292347475_track_number_of_available_movies_for_rent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
