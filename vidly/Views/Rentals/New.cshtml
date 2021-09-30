@@ -6,7 +6,7 @@
 
 <h2>New Rental Form</h2>
 
-<form>
+<form id="newRental">
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
@@ -74,6 +74,21 @@
                     source: source
                 }).on("typeahead:select", onTypeAheadCallBack);
             }
+
+            $("#newRental").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/api/rentals/CreateRentalOptimisticApproach",
+                    method: "POST",
+                    data: viewModel
+                })
+                .done(function () {
+                    toastr.success("Rentals successfully recorded");
+                })
+                .fail(function () {
+                        toastr.error("Error");
+                });
+            });
         });
     </script>
 }
