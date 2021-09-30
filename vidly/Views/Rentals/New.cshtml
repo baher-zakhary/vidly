@@ -26,26 +26,33 @@
         $(document).ready(function () {
 
             let viewModel = {};
+            let customersSource = setupBloodHound('/api/customers?query=%QUERY', '%QUERY', 'name');
 
-            let customers = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            remote: {
-            url: '/api/customers?query=%QUERY',
-            wildcard: '%QUERY'
-            }
-            });
-
-            $('#customer').typeahead({
-                minLength: 3,
-                highlight: true
-            }, {
-            name: 'customers',
-            display: 'name',
-            source: customers
-            }).on("typeahead:select", function (event, customer) {
+            setupTypeAhead('#customer', 'customers', 'name', customersSource, function (event, customer) {
                 viewModel.customerId = customer.id;
             });
+
+            function setupBloodHound(url, wildCard, datumTokenizer) {
+                return new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.obj.whitespace(datumTokenizer),
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    remote: {
+                        url: url,
+                        wildcard: wildCard
+                    }
+                });
+            }
+
+            function setupTypeAhead(inputSelector, name, display, source, onTypeAheadCallBack) {
+                $(inputSelector).typeahead({
+                    minLength: 3,
+                    highlight: true
+                }, {
+                    name: name,
+                    display: display,
+                    source: source
+                }).on("typeahead:select", onTypeAheadCallBack);
+            }
         });
     </script>
 }
