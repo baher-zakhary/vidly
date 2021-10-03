@@ -7,6 +7,10 @@ namespace vidly
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+            /*
+             * Catches errors thrown by our code and shows custom error or full exception trace
+             * if custom errors are not configured
+             */
             filters.Add(new HandleErrorAttribute());
 
             // Apply authorization on everything in our application
