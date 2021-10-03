@@ -17,7 +17,7 @@
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" name="movie" data-rule-atLeastOneMovie="true" required type="text" value="" class="form-control" />
+            <input id="movie" name="movie" data-rule-atLeastOneMovie="true" type="text" value="" class="form-control" />
         </div>
     </div>
 
@@ -63,7 +63,7 @@
                 return this.optional(element) || (viewModel.movieIds.length > 0);
             }, "At least one valid movie should be selected");
 
-            $("#newRental").validate({
+            let validator = $("#newRental").validate({
                 submitHandler: onSubmitRentalForm
             });
 
@@ -114,6 +114,15 @@
                 })
                 .done(function () {
                     toastr.success("Rentals successfully recorded");
+                    $("#customer").typeahead("val", "");
+                    $("#movie").typeahead("val", "");
+                    $("#movies").empty();
+
+                    viewModel = {
+                        movieIds: []
+                    };
+
+                    validator.resetForm();
                 })
                 .fail(function () {
                     toastr.error("Error");
